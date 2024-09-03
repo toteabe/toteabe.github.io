@@ -44,20 +44,111 @@
 
   <div class="post-content">
     <h2 id="11-jsp---java-server-page-a-través-de-ejemplos">1.1 JSP - Java Server Page a través de ejemplos</h2>
-<h3 id="1-holamundojsp-en-eclipse">1. Holamundo.jsp en Eclipse</h3>
+<h3 id="sdkman">SDKMAN</h3>
 
-<h4 id="sdkman">SDKMAN!</h4>
-<p>Comenzaremos con la instalación de SDKMAN! en bash.</p>
+<p>Comenzaremos con la instalación de <a href="https://[SDKMAN](https://sdkman.io/).io/">SDKMAN</a> en bash.</p>
 
-<p>SDKMAN! es una herramienta para la gestión paralela de múltiples SDK, que SDKMAN! llamar “candidatos”.</p>
+<p>Se trata de una herramienta para la gestión paralela de múltiples SDK, llamados “candidatos”. Proporciona una interfaz de línea de comandos (CLI) y API para enumerar, instalar, cambiar y eliminar candidatos.</p>
 
-<p>Proporciona una interfaz de línea de comandos (CLI) y API para enumerar, instalar, cambiar y eliminar candidatos.</p>
+<p>Además, se encarga de configurar las variables de entorno por nosotros. Permite a los desarrolladores instalar SDK basados ​​en JVM como Java, Groovy, Scala, Kotlin y Ceylon. También se admiten Maven, Gradle, SBT, Spring Boot, Vert.x y muchos otros.</p>
 
-<p>Además, se encarga de configurar las variables de entorno por nosotros.</p>
+<p>Es una utilidad gratuita, liviana y de código abierto escrita en Bash.</p>
 
-<p>También permite a los desarrolladores instalar SDK basados ​​en JVM como Java, Groovy, Scala, Kotlin y Ceylon. También se admiten Maven, Gradle, SBT, Spring Boot, Vert.x y muchos otros.</p>
+<p>Para instalarlo en un sistema linux utilizaríamos <a href="https://sdkman.io/install">instalación</a></p>
 
-<p>SDKMAN! es una utilidad gratuita, liviana y de código abierto escrita en Bash.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-s</span> <span class="s2">"https://get.sdkman.io"</span> | bash
+<span class="nb">source</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.sdkman/bin/sdkman-init.sh"</span>
+sdk version
+</code></pre></div></div>
+
+<p>Seguidamente, listaremos todas las opciones de SDK disponibles para Java mediante:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sdk list java
+</code></pre></div></div>
+
+<p>Veremos en el terminal el siguiente listado de distribucuiones jdk disponibles:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>================================================================================
+Available Java Versions for Linux 64bit
+================================================================================
+ Vendor        | Use | Version      | Dist    | Status     | Identifier
+--------------------------------------------------------------------------------
+ Corretto      |     | 22.0.2       | amzn    |            | 22.0.2-amzn         
+               |     | 21.0.4       | amzn    |            | 21.0.4-amzn         
+               |     | 17.0.12      | amzn    |            | 17.0.12-amzn        
+               |     | 11.0.24      | amzn    |            | 11.0.24-amzn        
+               |     | 8.0.422      | amzn    |            | 8.0.422-amzn        
+ Dragonwell    |     | 17.0.11      | albba   |            | 17.0.11-albba       
+               |     | 11.0.24      | albba   |            | 11.0.24-albba       
+               |     | 11.0.23      | albba   |            | 11.0.23-albba       
+               |     | 8.0.422      | albba   |            | 8.0.422-albba       
+               |     | 8.0.412      | albba   |            | 8.0.412-albba       
+ Gluon         |     | 22.1.0.1.r17 | gln     |            | 22.1.0.1.r17-gln    
+               |     | 22.1.0.1.r11 | gln     |            | 22.1.0.1.r11-gln    
+ GraalVM CE    |     | 22.0.2       | graalce |            | 22.0.2-graalce      
+               |     | 21.0.2       | graalce |            | 21.0.2-graalce      
+               |     | 17.0.9       | graalce |            | 17.0.9-graalce      
+ GraalVM Oracle|     | 24.ea.9      | graal   |            | 24.ea.9-graal       
+               |     | 24.ea.8      | graal   |            | 24.ea.8-graal       
+               |     | 24.ea.7      | graal   |            | 24.ea.7-graal       
+               |     | 23.ea.24     | graal   |            | 23.ea.24-graal      
+               |     | 23.ea.23     | graal   |            | 23.ea.23-graal      
+               |     | 23.ea.22     | graal   |            | 23.ea.22-graal      
+               |     | 23.ea.21     | graal   |            | 23.ea.21-graal      
+               |     | 22.0.2       | graal   |            | 22.0.2-graal        
+               |     | 21.0.4       | graal   |            | 21.0.4-graal        
+               |     | 17.0.12      | graal   |            | 17.0.12-graal       
+ Java.net      |     | 24.ea.13     | open    |            | 24.ea.13-open       
+               |     | 24.ea.12     | open    |            | 24.ea.12-open       
+               |     | 24.ea.11     | open    |            | 24.ea.11-open       
+               |     | 24.ea.10     | open    |            | 24.ea.10-open       
+               |     | 24.ea.9      | open    |            | 24.ea.9-open        
+               |     | 23.ea.29     | open    |            | 23.ea.29-open       
+               |     | 22.0.1       | open    |            | 22.0.1-open         
+               |     | 21.0.2       | open    |            | 21.0.2-open
+               ...
+</code></pre></div></div>
+
+<p>¿Qué distribución elegir? Las más utilizadas suelen ser Amazon Correto, Eclipse Temurin y Oracle OpenJDK. <a href="https://whichjdk.com/">whichjdk</a> da recomendaciones de elección. En nuestro caso utilizaremos la Eclipse Temurin 21.0.4</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sdk <span class="nb">install </span>java
+Downloading: java 21.0.4-tem
+
+In progress...
+
+<span class="c">################################################################################################################################################################################# 100.0%</span>
+
+Repackaging Java 21.0.4-tem...
+
+Done repackaging...
+
+Installing: java 21.0.4-tem
+Done installing!
+
+
+Setting java 21.0.4-tem as default.
+
+</code></pre></div></div>
+
+<p>A continuación, puedes verificar que se ha instalado a nivel de consola mediante el comando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java version
+openjdk version <span class="s2">"21.0.4"</span> 2024-07-16 LTS
+OpenJDK Runtime Environment Temurin-21.0.4+7 <span class="o">(</span>build 21.0.4+7-LTS<span class="o">)</span>
+OpenJDK 64-Bit Server VM Temurin-21.0.4+7 <span class="o">(</span>build 21.0.4+7-LTS, mixed mode, sharing<span class="o">)</span>
+</code></pre></div></div>
+
+<p>Si quieres ver el directorio de instalación de los diferentes candidatos <strong>/home/usuario/.sdkman/candidates</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /home/usuario/.sdkman/candidates
+<span class="nb">ls</span> <span class="nt">-al</span>
+total 12
+drwxrwxr-x 3 usuario usuario 4096 sep  3 11:52 <span class="nb">.</span>
+drwxrwxr-x 3 usuario usuario 4096 sep  3 11:52 ..
+drwxr-xr-x 9 usuario usuario 4096 jul 17 01:41 21.0.4-tem
+lrwxrwxrwx 1 usuario usuario   10 sep  3 11:52 current -&gt; 21.0.4-tem
+
+</code></pre></div></div>
 
 
   </div>
