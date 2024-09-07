@@ -269,7 +269,7 @@ podemos agregar esta anotación:</p>
 <blockquote>
 <h2 id="interfaz-funcional">Interfaz Funcional</h2>
 <p>Una interfaz funcional es aquella interfaz que <strong>sólo dispone
-de un método (abstracto)</strong></p>
+de un método (abstracto)</strong>.</p>
 </blockquote>
 <p>Recordemos que desde <strong>Java 8 (marzo 2014)</strong> las
 interfaces Java han evolucionado con características como disponer de
@@ -424,7 +424,7 @@ una vez, se debe usar la meta-anotación <strong><span class="citation" data-cit
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    Schedule<span class="op">[]</span> <span class="fu">value</span><span class="op">();</span></span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>A partir de esta defición mediante <strong><span class="citation" data-cites="Repeatable">@Repeatable</span></strong> se puede repetir la
-anotación sobre un mismo elemento</p>
+anotación sobre un mismo elemento, como en el ejemplo siguiente:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Schedule</span><span class="op">(</span>dayOfMonth<span class="op">=</span><span class="st">&quot;last&quot;</span><span class="op">)</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="at">@Schedule</span><span class="op">(</span>dayOfWeek<span class="op">=</span><span class="st">&quot;Fri&quot;</span><span class="op">,</span> hour<span class="op">=</span><span class="st">&quot;23&quot;</span><span class="op">)</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">void</span> <span class="fu">doPeriodicCleanup</span><span class="op">()</span> <span class="op">{</span> <span class="kw">...</span> <span class="op">}</span></span></code></pre></div>
