@@ -298,11 +298,11 @@ implementados en todas las clases que implementen la interfaz).</p>
 <p>Si modificamos la interfaz y añadimos un nuevo método (abstracto) a
 la interfaz Matematicas → <strong>el programa no compila</strong>: el
 compilador nos avisa de que esa interfaz ha dejado de ser una interfaz
-funcional, recordemos que</p>
+funcional.</p>
 <blockquote>
 <h2 id="recuerda">Recuerda</h2>
-<p>las interfaces funcionales únicamente disponen de un método
-abstracto</p>
+<p>Las interfaces funcionales únicamente disponen de un método
+abstracto.</p>
 </blockquote>
 <p>por este motivo la asignación de la lambda o función anónima no se
 podrá realizar, recibiéndose aviso del compilador.</p>
@@ -327,6 +327,104 @@ que obliga al desarrollador a solo incluir un método abstracto.</p>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="meta-anotaciones">Meta-anotaciones</h4>
+<blockquote>
+<h2 id="meta-anotaciones-1">Meta-anotaciones</h2>
+<p>Anotaciones sobre anotaciones</p>
+<p>Anotaciones que sirven para definir anotaciones y cómo deben
+comportarse.</p>
+</blockquote>
+<p>Anotaciones para indicar al compilador cómo debe tratar una nueva
+<strong>anotación personalizada</strong>(creada por el programador).</p>
+<h5 id="retention"><span class="citation" data-cites="Retention">@Retention</span></h5>
+<p>Esta anotación especifica el ámbito donde se encuentra disponible la
+anotación marcada con ella.</p>
+<p>Este ámbito puede ser:</p>
+<ul>
+<li>sólo al código fuente
+(<strong>RetentionPolicy.SOURCE</strong>),</li>
+<li>incrustado en el archivo de clase generado
+(<strong>RetentionPolicy.CLASS</strong>),</li>
+<li>o también disponible en tiempo de ejecución a través de la API de
+reflection (<strong>RetentionPolicy.RUNTIME</strong>).</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">lang</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">Retention</span><span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">lang</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">RetentionPolicy</span><span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">//@Retention(RetentionPolicy.CLASS)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">@Retention</span><span class="op">(</span><span class="bu">RetentionPolicy</span><span class="op">.</span><span class="fu">RUNTIME</span><span class="op">)</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">//@Retention(RetentionPolicy.SOURCE)</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="at">@interface</span> MyCustomAnnotation</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">//some code</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h5 id="documented"><span class="citation" data-cites="Documented">@Documented</span></h5>
+<p>Esta anotación indica que se debe incluir una nueva anotación en los
+documentos generados por las herramientas de generación de documentos
+Java (javadoc).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">lang</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">Documented</span><span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">@Documented</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="at">@interface</span> MyCustomAnnotation <span class="op">{</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>   <span class="co">//Some other code</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h5 id="target"><span class="citation" data-cites="Target">@Target</span></h5>
+<p>para indicar en qué parte del código se puede utilizar la anotación
+que se define.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">lang</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">ElementType</span><span class="op">;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">lang</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">Target</span><span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="at">@Target</span><span class="op">(</span>value <span class="op">=</span> <span class="op">{</span><span class="bu">ElementType</span><span class="op">.</span><span class="fu">TYPE</span><span class="op">,</span> <span class="bu">ElementType</span><span class="op">.</span><span class="fu">METHOD</span><span class="op">,</span> <span class="bu">ElementType</span><span class="op">.</span><span class="fu">CONSTRUCTOR</span><span class="op">,</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                 <span class="bu">ElementType</span><span class="op">.</span><span class="fu">ANNOTATION_TYPE</span><span class="op">,</span> <span class="bu">ElementType</span><span class="op">.</span><span class="fu">FIELD</span><span class="op">,</span> <span class="bu">ElementType</span><span class="op">.</span><span class="fu">LOCAL_VARIABLE</span><span class="op">,</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                 <span class="bu">ElementType</span><span class="op">.</span><span class="fu">PACKAGE</span><span class="op">,</span> <span class="bu">ElementType</span><span class="op">.</span><span class="fu">PARAMETER</span><span class="op">})</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="at">@interface</span> MyCustomAnnotation <span class="op">{</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>   <span class="co">//Some other code</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h5 id="inherited"><span class="citation" data-cites="Inherited">@Inherited</span></h5>
+<p>Esta anotación a cualquier otra anotación en su definición, se
+indicará que la anotación se hereda en el esquema de herencia de clases
+de Java.</p>
+<p>Por ejemplo, <strong><span class="citation" data-cites="MyCustomAnnotation">@MyCustomAnnotation</span></strong>
+lleva la meta-anotación <strong><span class="citation" data-cites="Inherited">@Inherited</span></strong>. Entonces, cuando
+<strong><span class="citation" data-cites="MyCustomAnnotation">@MyCustomAnnotation</span></strong> se
+aplica a cualquier clase MyParentClass, la anotación <strong><span class="citation" data-cites="MyCustomAnnotation">@MyCustomAnnotation</span></strong>
+también estará disponible para todas las clases hijas de
+MyParentClass.</p>
+<blockquote>
+<h2 id="aviso">AVISO:</h2>
+<p>Por defecto, las anotaciones aplicadas en la clase PADRE no están
+disponibles para las clases HIJAS.</p>
+</blockquote>
+<div class="sourceCode" id="cb11"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">lang</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">Inherited</span><span class="op">;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">@Inherited</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="at">@interface</span> MyCustomAnnotation <span class="op">{</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>   <span class="co">//Some other code</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h5 id="repeatable"><span class="citation" data-cites="Repeatable">@Repeatable</span></h5>
+<p>Por defecto, una anotación se puede aplicar a un elemento Java sólo
+una vez.</p>
+<p>Pero si, por cualquier requisito, se debe aplicar una anotación más
+de una vez, la definición de la anotación debe usar la meta-anotación
+<span class="citation" data-cites="Repeatable">@Repeatable</span>.</p>
+<p><strong><span class="citation" data-cites="Repeatable">@Repeatable</span></strong> se agregó en la
+última versión de <strong>Java 8</strong>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">lang</span><span class="op">.</span><span class="im">annotation</span><span class="op">.</span><span class="im">Repeatable</span><span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">@Retention</span><span class="op">(</span><span class="bu">RetentionPolicy</span><span class="op">.</span><span class="fu">RUNTIME</span><span class="op">)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="at">@Target</span><span class="op">(</span><span class="bu">ElementType</span><span class="op">.</span><span class="fu">TYPE</span><span class="op">)</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="at">@Repeatable</span><span class="op">(</span>Schedules<span class="op">.</span><span class="fu">class</span><span class="op">)</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="at">@interface</span> Schedule <span class="op">{</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">String</span> <span class="fu">dayOfMonth</span><span class="op">()</span> <span class="kw">default</span> <span class="st">&quot;first&quot;</span><span class="op">;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">String</span> <span class="fu">dayOfWeek</span><span class="op">()</span> <span class="kw">default</span> <span class="st">&quot;Mon&quot;</span><span class="op">;</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> <span class="fu">hour</span><span class="op">()</span> <span class="kw">default</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><span class="citation" data-cites="Retention">@Retention</span>(RetentionPolicy.RUNTIME) <span class="citation" data-cites="Target">@Target</span>(ElementType.TYPE)
+public <span class="citation" data-cites="interface">@interface</span>
+Schedules { Schedule[] value(); }</p>
+<p>A partir de aquí se podría repetir la anotación:</p>
+<p><span class="citation" data-cites="Schedule">@Schedule</span>(dayOfMonth=“last”) <span class="citation" data-cites="Schedule">@Schedule</span>(dayOfWeek=“Fri”,
+hour=“23”) public void doPeriodicCleanup() { … }</p>
 </article>
 </body>
 </html>
