@@ -150,6 +150,11 @@ generación (4GL)</a></li>
 generación (5GL)</a></li>
 <li><a href="#lenguajes-modernos-multiparadigma" id="toc-lenguajes-modernos-multiparadigma">6. Lenguajes modernos
 multiparadigma</a></li>
+</ul></li>
+<li><a href="#características-principales" id="toc-características-principales">Características principales</a>
+<ul>
+<li><a href="#alfabeto" id="toc-alfabeto">Alfabeto</a></li>
+<li><a href="#sintaxis" id="toc-sintaxis">Sintaxis</a></li>
 <li><a href="#semántica" id="toc-semántica">Semántica</a></li>
 </ul></li>
 <li><a href="#lenguajes-de-programación-estructurada" id="toc-lenguajes-de-programación-estructurada">Lenguajes de
@@ -266,15 +271,17 @@ Python…).</p>
 (Prolog).</p>
 <p><strong>Multiparadigma modernos</strong> → Fusionan paradigmas
 (imperativos, funcionales, orientados a objetos, lógicos) para mayor
-flexibilidad (Rust, Kotlin, TypeScript…). ## Características principales
-### Alfabeto</p>
+flexibilidad (Rust, Kotlin, TypeScript…).</p>
+<h2 id="características-principales">Características principales</h2>
+<h3 id="alfabeto">Alfabeto</h3>
 <ul>
 <li><strong>Alfabeto</strong>: conjunto finito de todos los símbolos
 básicos que se utilizan para construir programas con un lenguaje. Estos
 símbolos pueden ser letras, números, o caracteres especiales y definen
-los bloques de construcción de cualquier código.  #### Alfabeto mínimo
-en pseudocódigo (PSeInt)</li>
+los bloques de construcción de cualquier código. </li>
 </ul>
+<h4 id="alfabeto-mínimo-en-pseudocódigo-pseint">Alfabeto mínimo en
+pseudocódigo (PSeInt)</h4>
 <pre class="alfabeto"><code>Σ = { Letras: a…z, A…Z
     Dígitos: 0…9       
     Símbolos: ← , + - * / &lt; &gt; = ( ) ;        
@@ -296,12 +303,14 @@ como:</p>
 <code>sumaTotal</code></p></li>
 <li><p>Operadores: <code>+</code>, <code>!=</code>,
 <code>&amp;&amp;</code></p></li>
-<li><p>Números: <code>123</code>, <code>3.14</code> ###
-Sintaxis</p></li>
-<li><p><strong>Sintaxis</strong>: reglas que definen cómo se escriben
-las instrucciones (su estructura) y formalmente expresadas mediante
-otros lenguajes como <strong>bnf</strong>. #### Asignación en un
-lenguaje estilo C/Java mediante bnf</p></li>
+<li><p>Números: <code>123</code>, <code>3.14</code></p></li>
+</ul>
+<h3 id="sintaxis">Sintaxis</h3>
+<ul>
+<li><strong>Sintaxis</strong>: reglas que definen cómo se escriben las
+instrucciones (su estructura) y formalmente expresadas mediante otros
+lenguajes como <strong>bnf</strong>. #### Asignación en un lenguaje
+estilo C/Java mediante bnf</li>
 </ul>
 <pre class="bnf"><code>&lt;asignacion&gt; ::= &lt;identificador&gt; &quot;=&quot; &lt;expresion&gt; &quot;;&quot;
 &lt;identificador&gt; ::= &lt;letra&gt; { &lt;letra&gt; | &lt;digito&gt; }
@@ -353,11 +362,10 @@ no a cómo se escribe (eso es la sintaxis).</li>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span></code></pre></div>
 <ul>
 <li><p><strong>Primitivas</strong>: conjunto de elementos más pequeños
-con un significado semántico que un programador puede utilizar.</p>
-<p>Ej: -tipo de dato simple
-(como <code>number</code>, <code>boolean</code>) - una acción elemental
-(como la asignación o la lectura de datos) que no se puede descomponer
-en componentes más pequeños.</p></li>
+con un significado semántico que un programador puede utilizar. Ej: tipo
+de dato simple (como <code>number</code>, <code>boolean</code>) , una
+acción elemental (como la asignación o la lectura de datos) que no se
+puede descomponer en componentes más pequeños.</p></li>
 <li><p><strong>Abstracción</strong>: proceso de ocultar los detalles
 complejos de implementación y mostrar sólo lo esencial de una entidad o
 sistema, centrándose en qué hace, en lugar de cómo lo hace.  Esto
@@ -576,8 +584,7 @@ FinAlgoritmo
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>mensaje<span class="op">);</span></span></code></pre></div>
 <p>js sólo tiene la forma clásica de <strong>case/break</strong> hasta
-que se apruebe mejora de js del <strong>pattern-matching</strong>
-(https://github.com/tc39/proposal-pattern-matching):</p>
+que se apruebe mejora de js del <a href="https://github.com/tc39/proposal-pattern-matching">pattern-matching</a>:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> dia <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> nombreDia<span class="op">;</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
