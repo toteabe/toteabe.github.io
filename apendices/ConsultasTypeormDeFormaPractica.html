@@ -234,48 +234,41 @@ migrations:</p>
 <p>Lo crea con un <em>timestamp</em> de prefijo como se observa en la
 imagen.</p>
 <p>La primera migración será encargada de la creación del esquema:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { MigrationInterface<span class="op">,</span> QueryRunner } <span class="im">from</span> <span class="st">&quot;typeorm&quot;</span><span class="op">;</span>  </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">class</span> IntegrationEmpleadoDepartamento1767260355666 <span class="kw">implements</span> MigrationInterface {  </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">async</span> <span class="fu">up</span>(queryRunner<span class="op">:</span> QueryRunner)<span class="op">:</span> <span class="bu">Promise</span><span class="op">&lt;</span><span class="dt">void</span><span class="op">&gt;</span> {  </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> queryRunner<span class="op">.</span><span class="fu">query</span>(<span class="vs">`  </span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="vs">            create table departamento  </span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="vs">            (                id          serial  </span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="vs">                    constraint &quot;PK_7fd6f336280fd0c7a9318464723&quot;                        primary key,                nombre      varchar(255)   not null  </span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="vs">                    constraint &quot;UQ_574b538a96151008aa904a8d6f6&quot;                        unique,                presupuesto numeric(12, 2) not null,  </span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="vs">                gasto       numeric(12, 2) not null  </span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="vs">            );  </span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="vs">            alter table departamento  </span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="vs">                owner to app;  </span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="vs">            create table empleado  </span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="vs">            (                id              serial  </span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="vs">                    constraint &quot;PK_d15e7688d5ed23e9fdb570b2e5d&quot;                        primary key,                nif             varchar(9)   not null  </span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="vs">                    constraint &quot;UQ_79d5e96ac6040ef49d96af3289e&quot;                        unique,                nombre          varchar(100) not null,  </span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="vs">                apellido1       varchar(100) not null,  </span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="vs">                apellido2       varchar(100),  </span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="vs">                departamento_id integer  </span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="vs">                    constraint &quot;FK_bc7723b9a48814a4571aa92edc3&quot;                        references departamento  </span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="vs">                        on delete cascade            );  </span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="vs">            alter table empleado  </span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="vs">                owner to app;  </span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="vs">            create index &quot;IDX_bc7723b9a48814a4571aa92edc&quot;                on empleado (departamento_id);  </span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="vs">        `</span>)<span class="op">;</span>  </span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    }  </span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">async</span> <span class="fu">down</span>(queryRunner<span class="op">:</span> QueryRunner)<span class="op">:</span> <span class="bu">Promise</span><span class="op">&lt;</span><span class="dt">void</span><span class="op">&gt;</span> {  </span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> queryRunner<span class="op">.</span><span class="fu">query</span>(<span class="vs">`  </span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="vs">            drop table departamento;  </span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="vs">            drop table empleado;  </span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="vs">        `</span>)<span class="op">;</span>  </span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    }  </span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode ts"><code class="sourceCode typescript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { MigrationInterface<span class="op">,</span> QueryRunner } <span class="im">from</span> <span class="st">&quot;typeorm&quot;</span><span class="op">;</span>  </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">class</span> IntegrationEmpleadoDepartamentoCreateTables1767300414536 <span class="kw">implements</span> MigrationInterface {  </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">async</span> <span class="fu">up</span>(queryRunner<span class="op">:</span> QueryRunner)<span class="op">:</span> <span class="bu">Promise</span><span class="op">&lt;</span><span class="dt">void</span><span class="op">&gt;</span> {  </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> queryRunner<span class="op">.</span><span class="fu">query</span>(<span class="vs">`  </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO departamento VALUES(1, &#39;Desarrollo&#39;, 120000, 6000);</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO departamento VALUES(2, &#39;Sistemas&#39;, 150000, 21000);            INSERT INTO departamento VALUES(3, &#39;Recursos Humanos&#39;, 280000, 25000);</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO departamento VALUES(4, &#39;Contabilidad&#39;, 110000, 3000);</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO departamento VALUES(5, &#39;I+D&#39;, 375000, 380000);</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO departamento VALUES(6, &#39;Proyectos&#39;, 0, 0);</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO departamento VALUES(7, &#39;Publicidad&#39;, 0, 1000);          INSERT INTO empleado VALUES(1, &#39;32481596F&#39;, &#39;Aarón&#39;, &#39;Rivero&#39;, &#39;Gómez&#39;, 1);</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(2, &#39;Y5575632D&#39;, &#39;Adela&#39;, &#39;Salas&#39;, &#39;Díaz&#39;, 2);</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(3, &#39;R6970642B&#39;, &#39;Adolfo&#39;, &#39;Rubio&#39;, &#39;Flores&#39;, 3);</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(4, &#39;77705545E&#39;, &#39;Adrián&#39;, &#39;Suárez&#39;, NULL, 4);</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(5, &#39;17087203C&#39;, &#39;Marcos&#39;, &#39;Loyola&#39;, &#39;Méndez&#39;, 5);</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(6, &#39;38382980M&#39;, &#39;María&#39;, &#39;Santana&#39;, &#39;Moreno&#39;, 1);</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(7, &#39;80576669X&#39;, &#39;Pilar&#39;, &#39;Ruiz&#39;, NULL, 2);</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(8, &#39;71651431Z&#39;, &#39;Pepe&#39;, &#39;Ruiz&#39;, &#39;Santana&#39;, 3);</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(9, &#39;56399183D&#39;, &#39;Juan&#39;, &#39;Gómez&#39;, &#39;López&#39;, 2);</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(10, &#39;46384486H&#39;, &#39;Diego&#39;,&#39;Flores&#39;, &#39;Salas&#39;, 5);</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(11, &#39;67389283A&#39;, &#39;Marta&#39;,&#39;Herrera&#39;, &#39;Gil&#39;, 1);</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(12, &#39;41234836R&#39;, &#39;Irene&#39;,&#39;Salas&#39;, &#39;Flores&#39;, NULL);</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="vs">INSERT INTO empleado VALUES(13, &#39;82635162B&#39;, &#39;Juan Antonio&#39;,&#39;Sáez&#39;, &#39;Guerrero&#39;, NULL);        `</span>)<span class="op">;</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    }  </span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">async</span> <span class="fu">down</span>(queryRunner<span class="op">:</span> QueryRunner)<span class="op">:</span> <span class="bu">Promise</span><span class="op">&lt;</span><span class="dt">void</span><span class="op">&gt;</span> {  </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">await</span> queryRunner<span class="op">.</span><span class="fu">query</span>(<span class="vs">`  </span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="vs">            DELETE FROM empleado;  </span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="vs">            DELETE FROM departamento;  </span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="vs">        `</span>)<span class="op">;</span>  </span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    }  </span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Para lanzar esta migraciones debes utilizar:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> tsx ./node_modules/typeorm/cli.js migration:run <span class="at">-d</span> ./test/data-source-migrations.ts</span></code></pre></div>
 <p><strong>tsx</strong> en las últimas versiones de Typeorm da menos
