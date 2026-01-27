@@ -141,6 +141,9 @@ migraciones</a></li>
 <li><a href="#datamapper-repository-querybuilder-y-otros" id="toc-datamapper-repository-querybuilder-y-otros">DataMapper
 Repository, QueryBuilder y otros</a></li>
 <li><a href="#datamapper-repository" id="toc-datamapper-repository">DataMapper Repository</a></li>
+<li><a href="#findoptions" id="toc-findoptions">FindOptions</a></li>
+<li><a href="#opciones-básicas" id="toc-opciones-básicas">Opciones
+básicas</a></li>
 <li><a href="#operadores-avanzados-en-where" id="toc-operadores-avanzados-en-where">Operadores avanzados en
 <code>where</code>:</a></li>
 <li><a href="#querybuilder" id="toc-querybuilder">QueryBuilder</a></li>
@@ -532,13 +535,16 @@ mediante el método pre-implementado en el repository
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    )<span class="op">;</span>  </span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>}  </span></code></pre></div>
 <p>El objeto que recibe como argumento es un
-<strong>FindOption</strong>. # FindOptions <code>FindOptions</code> son
-los objetos que puedes pasar a los métodos <code>.find*</code> de un
-<code>Repository</code> o <code>EntityManager</code> (<code>find</code>,
-<code>findOne</code>, <code>findBy</code>, <code>findAndCount</code>,
-etc.) para construir consultas sin usar <code>QueryBuilder</code>. <a href="https://typeorm.io/docs/working-with-entity-manager/find-options/#basic-options">Find
+<strong>FindOption</strong>.</p>
+<h1 id="findoptions">FindOptions</h1>
+<p><code>FindOptions</code> son los objetos que puedes pasar a los
+métodos <code>.find*</code> de un <code>Repository</code> o
+<code>EntityManager</code> (<code>find</code>, <code>findOne</code>,
+<code>findBy</code>, <code>findAndCount</code>, etc.) para construir
+consultas sin usar <code>QueryBuilder</code>. <a href="https://typeorm.io/docs/working-with-entity-manager/find-options/#basic-options">Find
 options</a></p>
-<p>Se dividen en: ## Opciones básicas</p>
+<p>Se dividen en:</p>
+<h1 id="opciones-básicas">Opciones básicas</h1>
 <ul>
 <li><strong><code>select</code></strong>: qué columnas del entity
 quieres devolver.</li>
